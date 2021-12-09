@@ -183,20 +183,14 @@ app.delete('/items/:id', async(req, res) => {
     res.send(`Item id: ${req.params.id} has successfully deleted!`)
 })
 
-
-//join query 2 models
+//Sequelize join query between 2 models
 app.get('/restmenu', async (req, res) => {
-    const thisRestMenu = await Menu.findAll({ include: Restaurant })
+    const thisRestMenu = await Menu.findAll({ 
+        include: Restaurant 
+    })
 
     res.json(thisRestMenu)
 })
-
-//join query 3 models
-// app.get('/restmenuitems', async (req, res) => {
-//     const thisRestMenu = await MenuItems.findAll({ include: {Restaurant}, include: {MenuItems} })
-
-//     res.json(thisRestMenu)
-// })
 
 //route param join query by menu id
 app.get('/restmenu/:id', async (req, res) => {
